@@ -29,3 +29,14 @@ for step in range(power):
     equation_coefficients = horner_method(equation_coefficients, known_solution)
     equation_coefficients.pop(-1)
     print(equation_coefficients)
+    
+simplified = ""
+for solution in solutions:
+    if solution > 0:
+        simplified += f"(x - {solution}) * "
+    elif solution < 0:
+        simplified += f"(x + {-solution}) * "
+    else:
+        simplified += "x * "
+print("The simplified equation is:")
+print(simplified.rstrip(" * "))
