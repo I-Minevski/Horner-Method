@@ -16,3 +16,16 @@ while True:
 
 power = len(equation_coefficients)-1
 solutions = []
+for step in range(power):
+    equation = ""
+    j = 0
+    for i in range(len(equation_coefficients)-1, -1, -1):
+        equation += f"({equation_coefficients[j]}x^{i}) + "
+        j += 1
+    equation = equation.rstrip(" + ")
+    print(equation)
+    known_solution = int(input("Enter a known solution. "))
+    solutions.append(known_solution)
+    equation_coefficients = horner_method(equation_coefficients, known_solution)
+    equation_coefficients.pop(-1)
+    print(equation_coefficients)
