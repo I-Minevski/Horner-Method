@@ -2,7 +2,7 @@ def horner_method(coef, n):
     result = int(coef[0])
     new_poly_coef = [coef[0]]
     for i in range(1, len(coef)):
-        result = n*result + int(coef[i])
+        result = n * result + int(coef[i])
         new_poly_coef.append(result)
     return new_poly_coef
 
@@ -14,12 +14,13 @@ while True:
         break
     equation_coefficients.append(int(coefficient))
 
-power = len(equation_coefficients)-1
+power = len(equation_coefficients) - 1
 solutions = []
+horner_matrix = []
 for step in range(power):
     equation = ""
     j = 0
-    for i in range(len(equation_coefficients)-1, -1, -1):
+    for i in range(len(equation_coefficients) - 1, -1, -1):
         equation += f"({equation_coefficients[j]}x^{i}) + "
         j += 1
     equation = equation.rstrip(" + ")
@@ -28,8 +29,10 @@ for step in range(power):
     solutions.append(known_solution)
     equation_coefficients = horner_method(equation_coefficients, known_solution)
     equation_coefficients.pop(-1)
-    print(equation_coefficients)
-    
+    horner_matrix.append(equation_coefficients)
+    for row in horner_matrix:
+        print('|'.join(str(coef) for coef in row))
+
 simplified = ""
 for solution in solutions:
     if solution > 0:
