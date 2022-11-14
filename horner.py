@@ -13,3 +13,6 @@ while True:
     if coefficient == "end":
         break
     equation_coefficients.append(int(coefficient))
+
+power = len(equation_coefficients)-1
+solutions = []
