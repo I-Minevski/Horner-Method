@@ -22,7 +22,11 @@ for step in range(power):
     polynomial = ""
     j = 0
     for i in range(len(polynomial_coefficients) - 1, -1, -1):
-        polynomial += f"({polynomial_coefficients[j]}x^{i}) + "
+        if polynomial_coefficients[j] == 1:
+            monomial = f"(x^{i}) + "
+        else:
+            monomial = f"({polynomial_coefficients[j]}x^{i}) + "
+        polynomial += monomial
         j += 1
     polynomial = polynomial.rstrip(" + ")
     print(polynomial)
