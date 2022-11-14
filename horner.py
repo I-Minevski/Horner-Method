@@ -7,29 +7,34 @@ def horner_method(coef, n):
     return new_poly_coef
 
 
-equation_coefficients = []
+polynomial_coefficients = []
 while True:
     coefficient = input("Enter a valid coefficient. If done type [end]. ")
     if coefficient == "end":
         break
-    equation_coefficients.append(int(coefficient))
+    polynomial_coefficients.append(int(coefficient))
 
-power = len(equation_coefficients) - 1
+power = len(polynomial_coefficients) - 1
 solutions = []
+
 horner_matrix = []
 for step in range(power):
-    equation = ""
+    polynomial = ""
     j = 0
-    for i in range(len(equation_coefficients) - 1, -1, -1):
-        equation += f"({equation_coefficients[j]}x^{i}) + "
+    for i in range(len(polynomial_coefficients) - 1, -1, -1):
+        polynomial += f"({polynomial_coefficients[j]}x^{i}) + "
         j += 1
-    equation = equation.rstrip(" + ")
-    print(equation)
+    polynomial = polynomial.rstrip(" + ")
+    print(polynomial)
     known_solution = int(input("Enter a known solution. "))
+    if horner_method(polynomial_coefficients, known_solution)[-1] != 0:
+        print("The remaining polynomial has no real solutions.")
+        
+        break
     solutions.append(known_solution)
-    equation_coefficients = horner_method(equation_coefficients, known_solution)
-    equation_coefficients.pop(-1)
-    horner_matrix.append(equation_coefficients)
+    polynomial_coefficients = horner_method(polynomial_coefficients, known_solution)
+    polynomial_coefficients.pop(-1)
+    horner_matrix.append(polynomial_coefficients)
     for row in horner_matrix:
         print('|'.join(str(coef) for coef in row))
 
@@ -41,5 +46,5 @@ for solution in solutions:
         simplified += f"(x + {-solution}) * "
     else:
         simplified += "x * "
-print("The simplified equation is:")
+print("The simplified polynomial is:")
 print(simplified.rstrip(" * "))
