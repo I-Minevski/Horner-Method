@@ -16,7 +16,7 @@ while True:
 
 power = len(polynomial_coefficients) - 1
 solutions = []
-
+is_expandable = True
 horner_matrix = []
 for step in range(power):
     polynomial = ""
@@ -29,7 +29,7 @@ for step in range(power):
     known_solution = int(input("Enter a known solution. "))
     if horner_method(polynomial_coefficients, known_solution)[-1] != 0:
         print("The remaining polynomial has no real solutions.")
-        
+        is_expandable = False
         break
     solutions.append(known_solution)
     polynomial_coefficients = horner_method(polynomial_coefficients, known_solution)
@@ -46,5 +46,7 @@ for solution in solutions:
         simplified += f"(x + {-solution}) * "
     else:
         simplified += "x * "
+if not is_expandable:
+    simplified += f"({polynomial})"
 print("The simplified polynomial is:")
 print(simplified.rstrip(" * "))
