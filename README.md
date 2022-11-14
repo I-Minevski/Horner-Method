@@ -1,7 +1,7 @@
 # Horner-Method
 Horner’s Method for Polynomial Evaluation in Python
 
-# Test the code here: https://replit.com/@IM1419/Horner-Method#main.py
+# [Click here to test the code.](https://replit.com/@IM1419/Horner-Method#main.py)
 
 In mathematics and computer science, Horner's method (or Horner's scheme) is an algorithm for polynomial evaluation.
 Its basic principle is using an already known/guessed solution of a polynomial equation in order to simpify the polynomial.
